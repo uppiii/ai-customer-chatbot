@@ -1,0 +1,10 @@
+{
+  "name": "aura-skincare-voice-agent",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node scripts/start.js",
+    "test": "node --test"
+  }
+}

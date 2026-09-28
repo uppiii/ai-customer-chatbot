@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aura Skincare AI Voice Agent</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Aura Skincare</p>
+          <h1>AI Voice Customer Support Agent</h1>
+        </div>
+        <div class="state-wrap">
+          <button id="fullscreenBtn" class="secondary small-btn" type="button" aria-label="Enter full screen">Full screen</button>
+          <span class="state-label">Live state</span>
+          <span id="stateIndicator" class="state-indicator idle">Idle</span>
+        </div>
+      </header>
+
+      <main class="layout">
+        <section class="panel main-panel">
+          <div class="controls">
+            <button id="startCallBtn" class="primary">Start Call</button>
+            <button id="endCallBtn" class="secondary">End Call</button>
+            <button id="interruptBtn" class="secondary" type="button" hidden>Interrupt Aria</button>
+            <label class="language-control" for="languageMode">
+              Voice mode
+              <select id="languageMode" aria-label="Choose conversation language">
+                <option value="en-IN">English (India)</option>
+                <option value="hi-IN">Hinglish / Hindi</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="prompt-box">
+            <p>Click Start Call, wait for Aria to finish her greeting, then speak after the state changes to Listening. Use Interrupt Aria to stop her response.</p>
+          </div>
+
+          <div class="quick-actions" id="quickActions"></div>
+
+          <div class="transcript-header row-header">
+            <h2>Call transcript</h2>
+            <div class="meta-row">
+              <span id="callTimer" class="timer">00:00</span>
+            </div>
+          </div>
+          <div id="transcript" class="transcript"></div>
+        </section>
+
+        <aside class="panel helper-panel">
+          <h2>Test orders helper</h2>
+          <div id="orderHelper" class="order-helper"></div>
+        </aside>
+      </main>
+
+      <section class="panel summary-panel">
+        <div class="summary-header">
+          <h2>Call summary</h2>
+          <button id="copySummaryBtn" class="secondary small-btn">Copy summary</button>
+        </div>
+        <pre id="summaryOutput">{
+  "customer_intent": "NONE",
+  "order_id": null,
+  "resolution_status": "IN_PROGRESS",
+  "call_summary": "No call recorded yet."
+}</pre>
+      </section>
+
+      <section class="panel fallback-panel">
+        <div class="summary-header">
+          <h3>Manual fallback input</h3>
+          <button id="clearTranscriptBtn" class="secondary small-btn">Clear transcript</button>
+        </div>
+        <textarea id="manualInput" rows="3" placeholder="Type a customer question if microphone access is unavailable..."></textarea>
+        <div class="manual-controls">
+          <button id="sendManualBtn" class="primary">Send</button>
+        </div>
+      </section>
+
+      <section class="panel recording-panel" aria-labelledby="recordingTitle">
+        <div class="summary-header">
+          <div>
+            <h2 id="recordingTitle">Demo video recorder</h2>
+            <p class="recording-hint">Record this app tab or your screen, then download the video.</p>
+          </div>
+          <span id="recordingStatus" class="recording-status">Not recording</span>
+        </div>
+        <div class="recording-controls">
+          <button id="startRecordingBtn" class="primary" type="button">Start recording</button>
+          <button id="stopRecordingBtn" class="secondary" type="button" disabled>Stop and download</button>
+        </div>
+        <label class="recording-mic-option">
+          <input id="includeMicrophoneAudio" type="checkbox" />
+          Also capture microphone narration (use headphones to prevent Aria echo)
+        </label>
+        <p class="recording-note">When the browser share dialog opens, select this tab and turn on <strong>Share tab audio</strong>. If no tab-audio track is granted, recording will not start; retry and enable that option. Leave microphone narration off to avoid echo; your spoken questions remain in the transcript.</p>
+      </section>
+
+    </div>
+
+    <script type="module" src="src/app.js?v=audio-required-20260928"></script>
+  </body>
+</html>
